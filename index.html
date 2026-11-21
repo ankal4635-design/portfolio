@@ -1,147 +1,527 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Play a friendly Africa-themed trivia game with friends. Choose a topic and enjoy a relaxed round together.">
-    <title>mind refreshing game</title>
+
+    <meta name="description" content="Waitheira Ankal - IT Student, Web Developer and Software Development Enthusiast">
+
+    <title>Waitheira Ankal | Personal Portfolio</title>
+
+    <!-- Font Awesome Icon Provider -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.5/dist/peerjs.min.js"></script>
-    <script src="scprit.js" defer></script>
 </head>
+
 <body>
-    <main class="quiz-card">
-        <section id="cover-page" class="cover-page" aria-labelledby="cover-title">
-            <div class="cover-numbers" aria-hidden="true">
-                <span class="cover-number number-one">1000</span>
-                <span class="cover-number number-two">20</span>
-                <span class="cover-number number-three">100</span>
-                <span class="cover-number number-four">5</span>
-                <span class="cover-number number-five">10</span>
-                <span class="cover-number number-six">1000</span>
-            </div>
-            <div class="cover-content">
-                <p class="cover-kicker">A friendly Africa trivia game</p>
-                <div class="cover-portrait-frame">
-                    <img class="cover-portrait" src="images/ankal.jpg.jpeg"
-                        alt="Ankal, featured host of the Africa quiz">
-                    <span class="portrait-sparkle portrait-sparkle-one" aria-hidden="true">✦</span>
-                    <span class="portrait-sparkle portrait-sparkle-two" aria-hidden="true">✧</span>
-                </div>
-                <p class="featured-label">Featured by</p>
-                <h1 id="cover-title">Ankal</h1>
-                <p class="cover-description">
-                    Choose an African topic, invite a friend, and enjoy a relaxed round together.
-                    Learn something new about Africa with every question.
-                </p>
-                <div class="cover-stats" aria-label="Game highlights">
-                    <span><strong>05</strong> topics</span>
-                    <span><strong>30</strong> seconds</span>
-                    <span><strong>1000</strong> top points</span>
-                </div>
-                <button id="enter-game" class="button button-primary cover-button" type="button">
-                    Play Africa Quiz <span aria-hidden="true">→</span>
-                </button>
-                <p class="cover-tagline">Explore Africa. Learn together. Enjoy the game.</p>
-            </div>
-        </section>
 
-        <div id="game-content" hidden>
-        <header class="quiz-header">
-            <p class="eyebrow">Explore Africa with friends and family</p>
-            <h1 id="game-title">Africa Quiz</h1>
-            <p>Play together in a live round. Choose an answer, learn as you go, and celebrate every correct answer.</p>
-            <div class="dancing-doll" role="img" aria-label="Dancing quiz mascot">
-                <span aria-hidden="true">💃</span>
-                <span class="mascot-sparkle sparkle-one" aria-hidden="true">✦</span>
-                <span class="mascot-sparkle sparkle-two" aria-hidden="true">✧</span>
-            </div>
-        </header>
+    <!-- HEADER / NAVIGATION -->
+    <header class="header">
 
-        <section id="setup" class="game-panel" aria-labelledby="setup-title">
-            <h2 id="setup-title">Set up a friendly game</h2>
-            <form id="setup-form">
-                <div id="game-options">
-                    <div id="category-field">
-                        <label for="category">Choose a quiz topic</label>
-                        <select id="category" name="category">
-                            <option value="lakes">African Lakes</option>
-                            <option value="places">African Places</option>
-                            <option value="cities">African Cities</option>
-                            <option value="nature">African Nature</option>
-                            <option value="people">African People</option>
-                        </select>
-                    </div>
-                    <label for="difficulty">Choose your difficulty</label>
-                    <select id="difficulty" name="difficulty">
-                        <option value="easy" selected>Easy start</option>
-                        <option value="mixed">Balanced mix</option>
-                        <option value="challenge">Challenge first</option>
-                    </select>
-                    <label for="question-time">Time per question</label>
-                    <select id="question-time" name="question-time">
-                        <option value="10">10 seconds - quickfire</option>
-                        <option value="20">20 seconds - classic</option>
-                        <option value="30" selected>30 seconds - relaxed</option>
-                    </select>
-                    <label for="round-count">Game length</label>
-                    <select id="round-count" name="round-count">
-                        <option value="5" selected>5 questions - short match</option>
-                        <option value="10">10 questions - full showdown</option>
-                    </select>
-                    <p class="setup-hint">Easy Start begins with welcoming warm-ups. A Balanced Mix alternates easy and tougher questions. Challenge First starts with the tougher ones.</p>
-                </div>
-                <label id="player-name-label" for="player-names">Your player name</label>
-                <input id="player-names" name="players" type="text"
-                    placeholder="e.g. Amina" autocomplete="name" maxlength="24" required>
-                <p id="setup-error" class="form-error" role="alert"></p>
-                <button id="setup-button" class="button button-primary" type="submit">Create friendly game</button>
-            </form>
-        </section>
+        <a href="#home" class="logo">Waitheira<span>.</span></a>
 
-        <section id="lobby" class="game-panel" aria-labelledby="lobby-title" hidden>
-            <h2 id="lobby-title">Invite a player</h2>
-            <p id="lobby-status" role="status"></p>
-            <div id="invite-controls" hidden>
-                <label for="invite-link">Share this invite link</label>
-                <input id="invite-link" type="text" readonly>
-                <div class="invite-actions">
-                    <button id="copy-invite" class="button button-secondary" type="button">Copy link</button>
-                    <button id="share-invite" class="button button-secondary" type="button">Share link</button>
-                </div>
-            </div>
-            <p id="connection-error" class="form-error" role="alert"></p>
-            <button id="start-game" class="button button-primary" type="button" disabled>Start game</button>
-        </section>
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#interests">Interests</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-        <section id="quiz" class="game-panel" aria-labelledby="question" aria-live="polite" hidden>
-            <div class="quiz-meta">
-                <p id="progress">Question 1 of 5</p>
-                <p id="score"></p>
-                <p id="timer" role="timer" aria-label="Time remaining">30s</p>
-            </div>
-            <div id="timer-progress" class="timer-progress" role="progressbar"
-                aria-label="Time remaining" aria-valuemin="0" aria-valuemax="30" aria-valuenow="30">
-                <div id="timer-progress-fill"></div>
-            </div>
-            <h2 id="question" tabindex="-1">Loading question...</h2>
-            <div id="answers" class="answers"></div>
-            <div class="hint-controls">
-                <button id="hint-button" class="button button-secondary" type="button" disabled>
-                    Use 50/50 hint
-                </button>
-                <p id="hint-status" class="hint-status" role="status">One 50/50 hint is available this game.</p>
-            </div>
-            <p id="feedback" class="feedback" role="status"></p>
-        </section>
-
-        <section id="results" class="game-panel results" aria-labelledby="results-title" hidden>
-            <h2 id="results-title">Quiz complete!</h2>
-            <p id="winner"></p>
-            <ol id="standings" class="standings"></ol>
-            <button id="restart-button" class="button button-primary" type="button">New game</button>
-        </section>
+        <div class="menu-toggle" role="button" tabindex="0" aria-label="Toggle navigation" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
         </div>
-    </main>
+
+    </header>
+
+
+    <!-- HOME SECTION -->
+    <section class="home" id="home">
+
+        <div class="home-content">
+
+            <h3>Hello, I'm</h3>
+
+            <h1>Waitheira <span>Ankal</span></h1>
+
+            <h2>IT Student | Aspiring Developer</h2>
+
+            <p>
+                Passionate about technology, web development and software development.
+                I enjoy transforming creative ideas into practical digital experiences
+                and building projects that challenge me to learn, grow and improve.
+            </p>
+
+            <!-- SOCIAL MEDIA LINKS -->
+            <div class="social-links">
+
+                <a href="https://github.com/ankal4635-design"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-icon"
+                   aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+                <a href="https://instagram.com/ankal"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-icon"
+                   aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="https://tiktok.com/@heartz4ankal"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="social-icon"
+                   aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+            </div>
+
+            <a href="#about" class="btn">Discover More</a>
+
+        </div>
+
+
+        <!-- PROFILE IMAGE -->
+        <div class="home-image">
+
+            <img src="images/ankal.jpeg"
+                 alt="Waitheira Ankal profile photo">
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+
+        <h2 class="section-title">About <span>Me</span></h2>
+
+        <div class="about-container">
+
+            <div class="about-image">
+
+                <img src="images/ankal.jpeg"
+                     alt="Waitheira Ankal">
+
+            </div>
+
+
+            <div class="about-content">
+
+                <h3>My Journey in Technology</h3>
+
+                <p>
+                    I am a second-year student at KYU pursuing a Bachelor of Science
+                    in Information Technology.
+                </p>
+
+                <p>
+                    My passion lies in web development and software development.
+                    I enjoy exploring new technologies, experimenting with ideas
+                    and creating projects ranging from simple applications to
+                    more complex systems.
+                </p>
+
+                <p>
+                    For me, coding is more than a skill; it is a hobby and a way
+                    to turn imagination into something useful and meaningful.
+                </p>
+
+                <a href="#projects" class="btn">Explore My Projects</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INTERESTS SECTION -->
+    <section class="interests" id="interests">
+
+        <h2 class="section-title">What I <span>Love Doing</span></h2>
+
+        <div class="interests-container">
+
+            <div class="interest-card">
+
+                <i class="fa-solid fa-code"></i>
+
+                <h3>Web Development</h3>
+
+                <p>
+                    Creating responsive and attractive websites using modern
+                    web technologies.
+                </p>
+
+            </div>
+
+
+            <div class="interest-card">
+
+                <i class="fa-solid fa-laptop-code"></i>
+
+                <h3>Software Development</h3>
+
+                <p>
+                    Building applications and exploring creative solutions
+                    to everyday problems.
+                </p>
+
+            </div>
+
+
+            <div class="interest-card">
+
+                <i class="fa-solid fa-mobile-screen-button"></i>
+
+                <h3>Mobile Development</h3>
+
+                <p>
+                    Exploring mobile applications and cross-platform
+                    development.
+                </p>
+
+            </div>
+
+
+            <div class="interest-card">
+
+                <i class="fa-solid fa-lightbulb"></i>
+
+                <h3>Creative Thinking</h3>
+
+                <p>
+                    Turning ideas into projects while continuously learning
+                    new skills and technologies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS SECTION -->
+    <section class="skills" id="skills">
+
+        <h2 class="section-title">My <span>Skills</span></h2>
+
+        <div class="skills-container">
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-html5"></i>
+
+                <h3>HTML</h3>
+
+                <p>Comfortable</p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-css3-alt"></i>
+
+                <h3>CSS</h3>
+
+                <p>Learning</p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-js"></i>
+
+                <h3>JavaScript</h3>
+
+                <p>Learning</p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-node-js"></i>
+
+                <h3>Node.js</h3>
+
+                <p>Beginner</p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-solid fa-mobile-screen"></i>
+
+                <h3>Mobile Development</h3>
+
+                <p>Project Experience</p>
+
+            </div>
+
+
+            <div class="skill-card">
+
+                <i class="fa-brands fa-github"></i>
+
+                <h3>GitHub</h3>
+
+                <p>Learning</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS SECTION -->
+    <section class="projects" id="projects">
+
+        <h2 class="section-title">My <span>Projects</span></h2>
+
+        <div class="projects-container">
+
+
+            <!-- NUMBER SYSTEM CONVERTER -->
+            <div class="project-card">
+
+                <div class="project-image">
+
+                    <img src="images/number-system.png"
+                         alt="Number Systems converter app showing its conversion screen">
+
+                </div>
+
+                <div class="project-content">
+
+                    <h3>Number System Converter</h3>
+
+                    <p>
+                        A mobile utility for converting between binary, octal,
+                        decimal and hexadecimal number systems.
+                    </p>
+
+                    <div class="project-tags">
+
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Mobile App</span>
+                        <span>Number Systems</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROOM RALLY -->
+            <div class="project-card">
+
+                <div class="project-image">
+
+                    <img src="images/room-rally.jpeg"
+                         alt="Room Rally game landing page">
+
+                </div>
+
+                <div class="project-content">
+
+                    <h3>Room Rally</h3>
+
+                    <p>
+                        A personal game development project that reflects
+                        my interest in building interactive digital experiences.
+                    </p>
+
+                    <div class="project-tags">
+
+                        <span>Game Development</span>
+                        <span>Programming</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- EDUCATION SECTION -->
+    <section class="education" id="education">
+
+        <h2 class="section-title">My <span>Education</span></h2>
+
+        <div class="education-container">
+
+            <div class="education-card">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                <h3>Bachelor of Science in Information Technology</h3>
+
+                <h4>KYU</h4>
+
+                <p>Second Year Student</p>
+
+                <p>
+                    Developing knowledge and practical skills in information
+                    technology, programming and software development.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DEVELOPER MINDSET SECTION -->
+    <section class="mindset" id="mindset">
+
+        <h2 class="section-title">My Developer <span>Mindset</span></h2>
+
+        <div class="mindset-content">
+
+            <i class="fa-solid fa-quote-left"></i>
+
+            <h3>
+                "Turning ideas into reality, one project at a time."
+            </h3>
+
+            <p>
+                I believe every project is an opportunity to learn something new.
+                I enjoy experimenting, solving problems and improving my skills
+                through practical experience.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+
+        <h2 class="section-title">Get In <span>Touch</span></h2>
+
+        <div class="contact-container">
+
+            <p>
+                Have a project idea, collaboration opportunity or just want
+                to connect? Feel free to reach out through my social platforms.
+            </p>
+
+            <div class="contact-details">
+
+                <a href="https://github.com/ankal4635-design"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <i class="fa-brands fa-github"></i>
+
+                    GitHub
+
+                </a>
+
+
+                <a href="https://instagram.com/ankal"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <i class="fa-brands fa-instagram"></i>
+
+                    Instagram
+
+                </a>
+
+
+                <a href="https://tiktok.com/@heartz4ankal"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                    <i class="fa-brands fa-tiktok"></i>
+
+                    TikTok
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-social">
+
+            <a href="https://github.com/ankal4635-design"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="GitHub">
+
+                <i class="fa-brands fa-github"></i>
+
+            </a>
+
+
+            <a href="https://instagram.com/ankal"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Instagram">
+
+                <i class="fa-brands fa-instagram"></i>
+
+            </a>
+
+
+            <a href="https://tiktok.com/@heartz4ankal"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="TikTok">
+
+                <i class="fa-brands fa-tiktok"></i>
+
+            </a>
+
+        </div>
+
+        <p>
+            Designed and built with
+            <i class="fa-solid fa-heart"></i>
+            by Waitheira Ankal.
+        </p>
+
+        <p>© 2026 All Rights Reserved.</p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
